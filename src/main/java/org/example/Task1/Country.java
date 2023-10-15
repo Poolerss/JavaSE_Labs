@@ -1,5 +1,7 @@
 package org.example.Task1;
 
+import java.util.ArrayList;
+
 public class Country {
     private String name;
 
@@ -120,13 +122,23 @@ public class Country {
             System.out.println("______________________________________________________");
         }
     }
+/*
+//реализация метода для массива
 
     public static void printAll(Country[] countriesList){
         for (Country country : countriesList){
             country.print();
         }
+*/
+//реализация метода для ArrayList
+        public static void printAllList(ArrayList<Country> countriesList2){
+            for (Country country : countriesList2) {
+                country.print();
+            }
+        }
 
-    }
+
+
     public static void main(String[] args) {
 
         Country[] countriesList=new Country[5];
@@ -142,9 +154,20 @@ public class Country {
         countriesList[3].print();
         countriesList[4].print();
 */
-        printAll(countriesList);
+        //printAll(countriesList);
 
+// реализация через ArrayList коллекцию для простоты добавления новых значений
+        ArrayList<Country> countrieslist2 = new ArrayList<Country>();
+        countrieslist2.add(new Country("Russia", 17100000, 146700000, "Moscow", 12600000));
+        countrieslist2.add(new Country("Finland", 338000, 5500000, "Helsinki", 655000 ));
+        countrieslist2.add(new Country("France", 643800, 67800000, "Paris", 2100000 ));
+        countrieslist2.add(new Country("Andorra", 467, 85400, "Andorra la Vella", 22600));
+        countrieslist2.add(new Country("Singapore", 725, 5700000));
+        //System.out.println(countrieslist2.toString());
+        printAllList(countrieslist2);
+
+        }
     }
-}
+
 
 
