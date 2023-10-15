@@ -67,7 +67,7 @@ public class Country {
     }
     //СЕттеры
     public void setName(String name) {
-        if (name.isEmpty())
+        if (name.isEmpty()) //использовать isBlank() для проверки на строку пробелов???
             System.out.println("Название страны не может быть пустым");
         else
             this.name = name;
