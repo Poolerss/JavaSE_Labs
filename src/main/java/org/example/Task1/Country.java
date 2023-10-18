@@ -21,12 +21,12 @@ package org.example.Task1;
     public Country(String name, float area, float populations) {
         setName(name);
         setArea(area);
-        setPopulations(populations);;
+        setPopulations(populations);
     }
     // только для неизвестного населения 26...36 строки
     public Country(String name, float area) {
         setName(name);
-        setArea(area);;
+        setArea(area);
     }
     public Country(String name, float area, String capitalName, float capitalPopulations) {
         setName(name);
