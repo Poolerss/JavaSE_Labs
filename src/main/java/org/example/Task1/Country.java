@@ -1,6 +1,7 @@
 package org.example.Task1;
 
 
+    
     class Country {
     private String name;
 
@@ -29,14 +30,15 @@ package org.example.Task1;
     }
     public Country(String name, float area, String capitalName, float capitalPopulations) {
         setName(name);
-        setArea(area);;
-        this.capitalName = capitalName;
-        this.capitalPopulations = capitalPopulations;
+        setArea(area);
+		    setCapitalInfo(capitalName, capitalPopulations);
+       
     }
     public Country(String name, long area, String capitalName) {
         setName(name);
         setArea(area);
-        this.capitalName = capitalName;
+	    	setCapitalName(capitalName);
+        
     }
 
     //Геттеры
@@ -145,6 +147,7 @@ public static void printAll(Country[] countriesList){
 		
         }
 }
+
 
 
 
