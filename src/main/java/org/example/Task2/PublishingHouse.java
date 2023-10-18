@@ -1,25 +1,26 @@
 package org.example.Task2;
 
+
 class PublishingHouse {
     String publishingHouseName;
     String publishingHouseCity;
 
     public PublishingHouse(String publishingHouseCity, String publishingHouseName){
-        this.publishingHouseName = publishingHouseName;
-        this.publishingHouseCity = publishingHouseCity;
+		setPublishingHouseName(publishingHouseName);
+		setPublishingHouseCity(publishingHouseCity);
     }
 
     public void setPublishingHouseCity(String publishingHouseCity) {
-        if(publishingHouseCity.isEmpty())
-            System.out.println("Должен быть задан город издательства");
+        if(publishingHouseCity.isBlank())
+            throw new IllegalArgumentException("publishingHouseCity is Empty");
         else
             this.publishingHouseCity = publishingHouseCity;
     }
 
     public void setPublishingHouseName(String publishingHouseName) {
-        if(publishingHouseName.isEmpty())
-            System.out.println("Должно быть задано название издательства");
-        else
+        if(publishingHouseName.isBlank())
+			throw new IllegalArgumentException("publishingHouseName is empty");
+       else
             this.publishingHouseName = publishingHouseName;
     }
 
@@ -35,3 +36,6 @@ class PublishingHouse {
         System.out.print(publishingHouseName + "," + publishingHouseCity);
     }
 }
+
+	
+
