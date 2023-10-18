@@ -1,43 +1,41 @@
 package org.example.Task1;
 
-import java.util.ArrayList;
 
-public class Country {
+    class Country {
     private String name;
 
-    private long area; //при експонентной записи изменить на float
-    private Long populations; //при експонентной записи изменить на Float используя обертку для проверки на null
+    private float area;
+    private Float populations; 
     private String capitalName;
-    private Long capitalPopulations; //при експонентной записи изменить на Float используя обертку для проверки на null
+    private Float capitalPopulations;
 
     //конструкторы
-    public Country(String name, long area, long populations, String capitalName, long capitalPopulations) {
-        this.name = name;
-        this.area = area;
-        this.populations = populations;
-        this.capitalName = capitalName;
-        this.capitalPopulations = capitalPopulations;
+    public Country(String name, float area, float populations, String capitalName, float capitalPopulations) {
+        setName(name);
+        setArea(area);
+        setPopulations(populations);
+		     setCapitalInfo(capitalName, capitalPopulations);  
     }
 
-    public Country(String name, long area, long populations) {
-        this.name = name;
-        this.area = area;
-        this.populations = populations;
+    public Country(String name, float area, float populations) {
+        setName(name);
+        setArea(area);
+        setPopulations(populations);;
     }
     // только для неизвестного населения 26...36 строки
-    public Country(String name, long area) {
-        this.name = name;
-        this.area = area;
+    public Country(String name, float area) {
+        setName(name);
+        setArea(area);;
     }
-    public Country(String name, long area, String capitalName, long capitalPopulations) {
-        this.name = name;
-        this.area = area;
+    public Country(String name, float area, String capitalName, float capitalPopulations) {
+        setName(name);
+        setArea(area);;
         this.capitalName = capitalName;
         this.capitalPopulations = capitalPopulations;
     }
     public Country(String name, long area, String capitalName) {
-        this.name = name;
-        this.area = area;
+        setName(name);
+        setArea(area);
         this.capitalName = capitalName;
     }
 
@@ -46,11 +44,11 @@ public class Country {
         return name;
     }
 
-    public long getArea() {
+    public float getArea() {
         return area;
     }
 
-    public long getPopulations() {
+    public float getPopulations() {
         return populations;
     }
 
@@ -58,116 +56,95 @@ public class Country {
         return capitalName;
     }
 
-    public long getCapitalPopulations() {
+    public float getCapitalPopulations() {
         return capitalPopulations;
     }
 
-    public long getPopulationDensity() {
+    public float getPopulationDensity() {
         return populations / area;
     }
     //СЕттеры
     public void setName(String name) {
-        if (name.isEmpty()) //использовать isBlank() для проверки на строку пробелов???
-            System.out.println("Название страны не может быть пустым");
+        if (name.isEmpty())
+			throw new IllegalArgumentException("name is empty");
         else
             this.name = name;
     }
 
-    public void setArea(long area) {
+    public void setArea(float area) {
         if(area <= 0)
-            System.out.println("Площадь страны должна быть больше нуля");
+            throw new IllegalArgumentException("area is not correct");
         else
             this.area = area;
     }
 
-    public void setPopulations(long populations) {
+    public void setPopulations(float populations) {
         if(populations <=0)
-            System.out.println("Население должно быть больше нуля");
+            throw new IllegalArgumentException("population is not correct(less than zero)");
+		     else if (populations % 1!=0)
+			      throw new IllegalArgumentException("population is not correct()");
         else
             this.populations = populations;
     }
 
+	
     public void setCapitalName(String capitalName) {
-        this.capitalName = capitalName;
+		      if (capitalName.isEmpty())
+			throw new IllegalArgumentException("capitalName is empty");
+        else   
+		this.capitalName = capitalName;
     }
 
-    public void setCapitalPopulations(long capitalPopulations) {
-        this.capitalPopulations = capitalPopulations;
+    public void setCapitalPopulations(float capitalPopulations) {
+        if(capitalPopulations <=0)
+            throw new IllegalArgumentException("capital population is not correct(less than zero)");
+		     else if (capitalPopulations % 1!=0)
+			      throw new IllegalArgumentException("capital population is not correct()");
+        else
+            this.capitalPopulations = capitalPopulations;
     }
-    public void setCapitalInfo(String capitalName, long capitalPopulations) {
-        this.capitalName = capitalName;
-        this.capitalPopulations = capitalPopulations;
+    public void setCapitalInfo(String capitalName, float capitalPopulations) {
+        setCapitalName(capitalName);
+        setCapitalPopulations(capitalPopulations);
     }
 
     public void print(){
 
         System.out.println("Название: " + "\t\t\t" + name);
         System.out.println("Площадь: " + "\t\t\t" + area + " кв. км.");
-
-        if (populations != null){
-            System.out.println("Население: " + "\t\t\t" + populations + " человек");
-        }
-        else
-            System.out.println("Население: " + "\t\t\t" + populations + " человек");
-
-        if(capitalName != null && !capitalName.isEmpty()) {
+		if (populations !=null)
+        System.out.println("Население: " + "\t\t\t" + populations + " человек");
+		else
+		System.out.println("Население: " + "\t\t\t" + "неизвестно");
+        if(capitalName != null) {
             System.out.println("Столица: " + "\t\t\t" + capitalName);
-
-            if (capitalPopulations != null){
-                System.out.println("Население столицы: " + "\t" + capitalPopulations + " человек");
-            }
-            else
-                System.out.println("Население столицы: " + "\t\t\t" + " неизвестно");
-
+			if (capitalPopulations != null)
+            System.out.println("Население столицы: " + "\t\t\t" + capitalPopulations);
+else
+			System.out.println("Население столицы: " + "\t\t\t неизвестно");
             System.out.println("______________________________________________________");
         }
     }
-/*
-//реализация метода для массива
-
-    public static void printAll(Country[] countriesList){
+public static void printAll(Country[] countriesList){
         for (Country country : countriesList){
             country.print();
         }
-*/
-//реализация метода для ArrayList
-        public static void printAllList(ArrayList<Country> countriesList2){
-            for (Country country : countriesList2) {
-                country.print();
-            }
-        }
-
-
-
-    public static void main(String[] args) {
+}
+	
+	public static void main(String[] args) {
 
         Country[] countriesList=new Country[5];
-        countriesList[0] = new Country("Russia", 17100000, 146700000, "Moscow", 12600000 );
+        countriesList[0] = new Country("Russia", 17100000, "Moscow" );
         countriesList[1] = new Country("Finland", 338000, 5500000, "Helsinki", 655000 );
         countriesList[2] = new Country("France", 643800, 67800000, "Paris", 2100000 );
         countriesList[3] = new Country("Andorra", 467, 85400, "Andorra la Vella", 22600 );
         countriesList[4] = new Country("Singapore", 725, 5700000);
-/*
-        countriesList[0].print();
-        countriesList[1].print();
-        countriesList[2].print();
-        countriesList[3].print();
-        countriesList[4].print();
-*/
-        //printAll(countriesList);
 
-// реализация через ArrayList коллекцию для простоты добавления новых значений
-        ArrayList<Country> countrieslist2 = new ArrayList<Country>();
-        countrieslist2.add(new Country("Russia", 17100000, 146700000, "Moscow", 12600000));
-        countrieslist2.add(new Country("Finland", 338000, 5500000, "Helsinki", 655000 ));
-        countrieslist2.add(new Country("France", 643800, 67800000, "Paris", 2100000 ));
-        countrieslist2.add(new Country("Andorra", 467, 85400, "Andorra la Vella", 22600));
-        countrieslist2.add(new Country("Singapore", 725, 5700000));
-        //System.out.println(countrieslist2.toString());
-        printAllList(countrieslist2);
-
+    
+        printAll(countriesList);
+		
         }
-    }
+}
 
 
 
