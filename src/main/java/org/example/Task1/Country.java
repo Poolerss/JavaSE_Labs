@@ -2,7 +2,7 @@ package org.example.Task1;
 
 import java.util.Arrays;
 
-    class Country {
+class Country {
     private String name;
     private float area;
     private long populations;
@@ -14,7 +14,7 @@ import java.util.Arrays;
         setName(name);
         setArea(area);
         setPopulations(populations);
-		setCapitalInfo(capitalName, capitalPopulations);
+        setCapitalInfo(capitalName, capitalPopulations);
     }
 
     public Country(String name, float area, long populations) {
@@ -31,13 +31,13 @@ import java.util.Arrays;
         setName(name);
         setArea(area);
         setCapitalInfo(capitalName, capitalPopulations);
-       
+
     }
     public Country(String name, long area, String capitalName) {
         setName(name);
         setArea(area);
         setCapitalName(capitalName);
-        
+
     }
 
     //Геттеры
@@ -66,8 +66,8 @@ import java.util.Arrays;
     }
     //СЕттеры
     public void setName(String name) {
-        if (name.isBlank())
-			throw new IllegalArgumentException("name is empty");
+        if ( name==null||  name.isBlank())
+            throw new IllegalArgumentException("name is empty or null");
         else
             this.name = name;
     }
@@ -86,12 +86,13 @@ import java.util.Arrays;
             this.populations = populations;
     }
 
-	
+
     public void setCapitalName(String capitalName) {
-        if (capitalName.isBlank())
-			throw new IllegalArgumentException("capitalName is empty");
-        else   
-		    this.capitalName = capitalName;
+        if (capitalName==null || capitalName.isBlank()) {
+            throw new IllegalArgumentException("capitalName is empty or null");
+        }else{
+            this.capitalName = capitalName;
+        }
     }
 
     public void setCapitalPopulations(long capitalPopulations) {
@@ -105,46 +106,33 @@ import java.util.Arrays;
         setCapitalPopulations(capitalPopulations);
     }
 
-        public void print() {
-            System.out.printf("Название: %s%n", name);
-            System.out.printf("Площадь: %.1f кв. км.%n", area);
+    public void print() {
+        System.out.printf("Название: %s%n", name);
+        System.out.printf("Площадь: %.1f кв. км.%n", area);
 
-            if (populations != 0)
-                System.out.printf("Население: %d человек%n", populations);
+        if (populations != 0)
+            System.out.printf("Население: %d человек%n", populations);
+        else
+            System.out.println("Население: неизвестно");
+
+        if(capitalName != null) {
+            System.out.printf("Столица: %s%n", capitalName);
+            if (capitalPopulations != 0)
+                System.out.printf("Население столицы: %d%n", capitalPopulations);
             else
-                System.out.println("Население: неизвестно");
-
-            if(capitalName != null) {
-                System.out.printf("Столица: %s%n", capitalName);
-                if (capitalPopulations != 0)
-                    System.out.printf("Население столицы: %d%n", capitalPopulations);
-                else
-                    System.out.println("Население столицы: неизвестно");
-            }
-            System.out.println("______________________________________________________");
+                System.out.println("Население столицы: неизвестно");
         }
-        public static void printAll(Country[] countriesList) {
-            if (countriesList == null || countriesList.length == 0) {
-                System.out.println("Список стран пуст");
-                return;
-            }
-            Arrays.stream(countriesList).forEach(Country::print);
+        System.out.println("______________________________________________________");
+    }
+    public static void printAll(Country[] countriesList) {
+        if (countriesList == null || countriesList.length == 0) {
+            System.out.println("Список стран пуст");
+            return;
         }
+        Arrays.stream(countriesList).forEach(Country::print);
+    }
 
-	
-	public static void main(String[] args) {
 
-        Country[] countriesList=new Country[5];
-        countriesList[0] = new Country("Russia", 17_100_000, 146_700_000,"Moscow",12_600_000 );
-        countriesList[1] = new Country("Finland", 338_000, 5_500_000, "Helsinki", 655_000 );
-        countriesList[2] = new Country("France", 643_800, 67_800_000, "Paris", 2_100_000 );
-        countriesList[3] = new Country("Andorra", 467, 85400, "Andorra la Vella", 22600 );
-        countriesList[4] = new Country("Singapore", 725, 5_700_000);
-
-    
-        printAll(countriesList);
-		
-        }
 }
 
 

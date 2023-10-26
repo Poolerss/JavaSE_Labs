@@ -74,34 +74,6 @@ public class Book {
             throw new IllegalArgumentException("publishingYear is not valid");
     }
 
-/*
-    public void setBookAuthors(String... bookAuthors) {
-        if (bookAuthors != null && bookAuthors.length > 0) {
-            if (this.bookAuthors == null) {
-                this.bookAuthors = bookAuthors;
-            } else {
-                String[] newBookAuthors = new String[this.bookAuthors.length + bookAuthors.length];
-                int index = 0;
-
-                for (String author : this.bookAuthors) {
-                    newBookAuthors[index] = author;
-                    index++;
-                }
-
-                for (String author : bookAuthors) {
-                    newBookAuthors[index] = author;
-                    index++;
-                }
-
-                this.bookAuthors = newBookAuthors;
-            }
-        } else {
-            this.bookAuthors = null;
-            System.out.println("bookAuthors is empty or null");
-        }
-    }
-*/
-
     public void setBookAuthors(String... bookAuthors) {
         if (bookAuthors != null && bookAuthors.length > 0 && !Arrays.asList(bookAuthors).stream().anyMatch(String::isBlank)) {
             if (this.bookAuthors == null) {
@@ -148,36 +120,6 @@ public class Book {
                 }
             }
         }
-    }
-
-    public static void main(String[] args) {
-
-        PublishingHouse prospekt = new PublishingHouse("Москва", "Проспект");
-        PublishingHouse piter = new PublishingHouse("Санкт-Петербург", "Питер");
-        PublishingHouse bhw = new PublishingHouse("Санкт-Петебург", "БХВ");
-        PublishingHouse dialectika = new PublishingHouse("Киев", "Даилектика");
-
-        Book[] bookList = new Book[5];
-
-        bookList[0] = new Book("\"Computer Science: основы программирования на Java, ООП, алгоритмы\"" +
-                "и структуры данных", new String[] {"Седжвик Роберт", "Уэйн Кевин"}, 2018, piter);
-        bookList[1] = new Book("\"Разработка требований к программному обеспечению.\"" +
-                "3-е издание, дополненное", new String[] {"Вингерс Карл"}, 2019, bhw);
-        bookList[2] = new Book("\"Java. Полное руководство, 10-е издание\"", new String[]{"Гербердт Шилдт"},
-                2018,dialectika);
-        bookList[3] = new Book("\"С/С++. Процедуурное программирование\"", new String [] {"Полубенцева М.И."},
-                2017, bhw);
-        bookList[4] = new Book("\"Конституция РФ\"", 2020, prospekt);
-
-        printAll(bookList);
-
-        bhw.setPublishingHouseCity("Санкт-Петербург");
-       /* Значение изменилось потому что мы меняем не ссылку, а сам объект в динамической памяти.
-            */
-        printAll(bookList);
-
-
-
     }
 
 }

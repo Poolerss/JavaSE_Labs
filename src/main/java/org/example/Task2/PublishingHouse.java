@@ -11,14 +11,14 @@ class PublishingHouse {
     }
 
     public void setPublishingHouseCity(String publishingHouseCity) {
-        if(publishingHouseCity.isBlank())
+        if(publishingHouseCity==null || publishingHouseCity.isBlank())
             throw new IllegalArgumentException("publishingHouseCity is Empty");
         else
             this.publishingHouseCity = publishingHouseCity;
     }
 
     public void setPublishingHouseName(String publishingHouseName) {
-        if(publishingHouseName.isBlank())
+        if(publishingHouseName==null ||  publishingHouseName.isBlank())
 			throw new IllegalArgumentException("publishingHouseName is empty");
        else
             this.publishingHouseName = publishingHouseName;
